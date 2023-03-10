@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
+  },
+  {
+    path: 'slider',
+    loadChildren: () => import('./slider/slider.module').then( m => m.SliderPageModule)
   }
 ];
 

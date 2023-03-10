@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ورود به حساب کاربری</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="12">
+        <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
+          <ion-list>
+            <ion-item>
+              <ion-label position="floating">نام کاربری</ion-label>
+              <ion-input formControlName="email"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="loginForm.controls.email.touched">
+              <p class="text-error" *ngIf="loginForm.controls.email.errors?.required">
+                لطفا ایمیل خود را وارد نمایید
+              </p>
+              <p class="text-error" *ngIf="loginForm.controls.email.errors?.email">
+                ایمیل وارد شده معتبر نمی باشد
+              </p>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">کلمه ی عبور</ion-label>
+              <ion-input formControlName="password" type="password"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="loginForm.controls.password.touched">
+              <p class="text-error" *ngIf="loginForm.controls.password.errors?.required">
+                لطفا کلمه عبور خود را وارد نمایید
+              </p>
+            </ion-item>
+            <ion-button expand="block" fill="outline" size="medium">
+              ارسال
+            </ion-button>
+          </ion-list>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
