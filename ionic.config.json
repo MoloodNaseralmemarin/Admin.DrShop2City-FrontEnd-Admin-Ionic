@@ -1,0 +1,7 @@
+{
+  "name": "Admin.DrShop2City-FrontEnd",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
