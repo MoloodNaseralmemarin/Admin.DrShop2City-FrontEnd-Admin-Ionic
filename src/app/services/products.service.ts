@@ -8,6 +8,7 @@ import { ProductDetailViewModel } from './../DTOs/Products/ProductDetailViewMode
 import { Product } from '../DTOs/Products/Product';
 import { ProductCommentViewModel } from '../DTOs/Products/ProductCommentViewModel';
 import { AddProductComment } from './../DTOs/Products/AddProductComment';
+import { EditProductViewModel } from '../DTOs/Products/EditProductViewModel';
 
 @Injectable({
   providedIn: 'root'
@@ -51,4 +52,16 @@ export class ProductsService {
   addProductComment(comment: AddProductComment): Observable<IResponseResult<ProductCommentViewModel>> {
     return this.http.post<IResponseResult<ProductCommentViewModel>>('/products/add-product-comment', comment);
   }
+
+  getProductById(productId: number): Observable<IResponseResult<Product>> {
+    return this.http.get<IResponseResult<Product>>('/products/get-product-by-id/' + productId);
+  }
+
+  getProductForEdit(productId: number): Observable<IResponseResult<EditProductViewModel>> {
+    return this.http.get<IResponseResult<EditProductViewModel>>('/AdminProducts/get-product-for-edit/' + productId);
+  }
+
+  editProduct(product: EditProductViewModel): Observable<IResponseResult<any>> {
+    return this.http.post<IResponseResult<any>>('/AdminProducts/edit-product', product);
+}
 }

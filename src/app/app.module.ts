@@ -9,7 +9,11 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { EshopInterceptor } from './utilities/EshopInterceptor';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from './services/auth.service';
+import { ProductsService } from './services/products.service';
 
 @NgModule({
   declarations: [
@@ -22,12 +26,23 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule.forRoot(
       {
         //به خاطر اینکه ظاهر وب داشته باشد
-        animated: false// نحوه بازشدن صفحه ها
+        animated: false,// نحوه بازشدن صفحه ها
+        mode: 'md' //حالت وب سایت
       }),
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: EshopInterceptor,
+    multi: true
+  },
+    CookieService,
+    AuthService,
+    ProductsService
+  ],
+
   bootstrap: [AppComponent],
 })
 export class AppModule { }

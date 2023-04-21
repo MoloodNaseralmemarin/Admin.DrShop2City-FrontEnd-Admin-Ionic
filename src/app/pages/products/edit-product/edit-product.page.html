@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-title>ویرایش محصول</ion-title>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/products"></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+      <ion-row>
+          <ion-col size="12">
+              <ion-list *ngIf="editForm !== null">
+                  <form [formGroup]="editForm" (ngSubmit)="submitEditForm()">
+                      <ion-item>
+                          <ion-label position="floating">نام محصول</ion-label>
+                          <ion-input formControlName="productName"></ion-input>
+                      </ion-item>
+                      <ion-item>
+                          <ion-label position="floating">قیمت محصول</ion-label>
+                          <ion-input formControlName="price"></ion-input>
+                      </ion-item>
+                      <ion-item>
+                          <ion-label position="floating">توضیحات کوتاه</ion-label>
+                          <ion-textarea formControlName="shortDescription"></ion-textarea>
+                      </ion-item>
+                      <ion-item>
+                          <ion-label position="floating">توضیحات اصلی</ion-label>
+                          <ion-textarea formControlName="description"></ion-textarea>
+                      </ion-item>
+                      <ion-item>
+                          <app-image-picker (imagePick)="changeImage($event)"></app-image-picker>
+                          <img [src]="selectedImage" alt="" *ngIf="selectedImage !== ''" class="preview-image">
+                      </ion-item>
+                      <ion-item>
+                          <ion-label>موجود می باشد / نمی باشد</ion-label>
+                          <ion-checkbox slot="end" formControlName="isExists"></ion-checkbox>
+                      </ion-item>
+                      <ion-item>
+                          <ion-label>ویژه / غیر ویژه</ion-label>
+                          <ion-checkbox slot="end" formControlName="isSpecial"></ion-checkbox>
+                      </ion-item>
+                      <ion-item>
+                          <ion-button type="submit" color="success" size="lg">ویرایش</ion-button>
+                      </ion-item>
+                  </form>
+              </ion-list>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-content>

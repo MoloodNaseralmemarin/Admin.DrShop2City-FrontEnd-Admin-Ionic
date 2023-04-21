@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>محصولات</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="12">
+        <div class="table-responsive" *ngIf="filterProducts.products !== null && filterProducts.products !== undefined && filterProducts.products.length>0">
+          <table class="table table-striped table-hover table-bordered">
+            <thead>
+              <tr>
+                <th>شناسه</th>
+                <th>تصویر</th>
+                <th>عنوان</th>
+                <th>دستورات</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of filterProducts.products">
+                <td>{{product.id}}</td>
+                <td>
+                  <img [src]="imagePath + product.imageName" alt="" style="border-radius: 50%; width: 75px;height: 75px">
+                </td>
+                <td>{{product.productName}}</td>
+                <td>
+                  <ion-button color="warning" [routerLink]="['/products','edit',product.id]">ویرایش
+                  </ion-button>
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+        <div class="alert alert-warning" *ngIf="filterProducts.products === null || filterProducts.products.length === 0">
+          <p>هیچ محصولی یافت نشد</p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col>
+        <ul>
+          <li>
+            <a href="#" class="btn btn-primary">
+              <span class="icon-chevron-left"></span>
+            </a>
+          </li>
+          <li [ngClass]="{'active':page === filterProducts.activePage}" *ngFor="let page of pages" (click)="setPage(page)">
+            <a class="cursor-pointer">{{page}}</a>
+          </li>
+          <li>
+            <a href="#" class="btn btn-primary">
+              <span class="icon-chevron-right"></span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group me-2" role="group" aria-label="First group">
+            <button type="button" class="btn btn-primary">1</button>
+            <button type="button" class="btn btn-primary">2</button>
+            <button type="button" class="btn btn-primary">3</button>
+            <button type="button" class="btn btn-primary">4</button>
+          </div>
+          <div class="btn-group me-2" role="group" aria-label="Second group">
+            <button type="button" class="btn btn-secondary">5</button>
+            <button type="button" class="btn btn-secondary">6</button>
+            <button type="button" class="btn btn-secondary">7</button>
+          </div>
+          <div class="btn-group" role="group" aria-label="Third group">
+            <button type="button" class="btn btn-info">8</button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

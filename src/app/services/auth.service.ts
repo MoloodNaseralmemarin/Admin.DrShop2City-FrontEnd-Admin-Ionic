@@ -39,24 +39,19 @@ export class AuthService {
     return this.currentUser;
   }
 
-  registerUser(registerData: RegisterUserViewModel): Observable<any> {
-    return this.http.post<any>('/AdminAccount/register', registerData);
-  }
-
   loginUser(loginUserDTO: LoginUserViewModel): Observable<ILoginUserAccount> {
     return this.http.post<ILoginUserAccount>('/AdminAccount/login', loginUserDTO);
   }
 
   checkUserAuth(): Observable<ICheckUserAuthResult> {
-    return this.http.post<ICheckUserAuthResult>('/AdminAccount/check-auth', null);
+    return this.http.post<ICheckUserAuthResult>('/Account/check-auth', null);
   }
 
+  checkAdminAuth(): Observable<ICheckUserAuthResult> {
+    return this.http.post<ICheckUserAuthResult>('/AdminAccount/check-admin-auth', null);
+  }
   logOutUser(): Observable<any> {
     return this.http.get('/AdminAccount/sign-out');
-  }
-
-  editUserAccount(user: EditUserViewModel): Observable<IResponseResult<any>> {
-    return this.http.post<IResponseResult<any>>('/AdminAccount/edit-user', user);
   }
 }
 

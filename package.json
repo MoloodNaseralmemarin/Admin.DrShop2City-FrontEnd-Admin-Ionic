@@ -25,7 +25,11 @@
     "@capacitor/keyboard": "4.1.1",
     "@capacitor/status-bar": "4.1.1",
     "@ionic/angular": "^6.1.9",
+    "angular-bootstrap": "^0.12.2",
+    "bootstrap": "^5.2.3",
     "ionicons": "^6.0.3",
+    "ngx-cookie-service": "^15.0.0",
+    "ngx-image-compress": "^13.1.16",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
